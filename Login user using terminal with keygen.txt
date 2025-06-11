@@ -1,0 +1,31 @@
+Part 1 - AWS
+1. first login aws account
+2. launch aws ec2 instance 
+3. connect to instance and sudo -i
+4. create a user using adduser username
+5. mkdir .ssh
+6. cd .ssh
+7. touch authorized_keys
+will continue here after below steps
+------------------------------------------------------------------------
+Part 2 - Terminal on pc
+run windows powershell from downloads folder
+1. ssh-keygen -t rsa -b 4096
+2. givename as filename_keys
+3. enter
+4. enter
+5. the keygen will be created.
+6. open the downloads folder where the keygen is generated, open the public key(pub) with text editor and copy that key.
+
+--------------------------------------------------------------------------
+continue to the Part 1 - AWS 
+8. vim authorized_keys
+9. paste that key over here. close with wq! out of vim editor
+10. chmod 600 authorized_keys
+11. cd ..
+12. chmod 700 .ssh
+
+---------------------------------------------------------------------------
+continue to the Part 2 
+7. ssh -i filename_keys.pem username@<public_ip>
+8. Here you go with user login from terminal.

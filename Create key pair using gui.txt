@@ -1,0 +1,15 @@
+Part 1 - Terminal on pc
+run windows powershell from downloads folder
+1. ssh-keygen -t rsa -b 4096
+2. givename as filename_keys
+3. enter
+4. enter
+5. the keygen will be created.
+-----------------------------------------------------------------------
+Part 2 - AWS
+1. first login aws account
+2. In search bar, search for key pairs under ec2 and open it.
+3. In key pair, go in actions and import key pair.
+4. Give the same name as given while keygen creation without extension as  pem and browse the keygen file in downloads folder and select the pub file.
+5. Launch the new instance, while selecting the key pair choose the new key pair with name filename_keys
+6. Launch

@@ -1,0 +1,44 @@
+Ec2 and Ebs should be in same availability zone
+
+
+For unmount partition use umount
+
+
+1. Create ec2 with ssh inbound rule
+2. Create volume with same availability zone of ec2
+3. Select volume -> action -> attach volume
+4. Select our instance
+5. Select required device like /dev/xvdbb -> attach
+6. Connect ec2 instance
+7. Sudo -i
+8. lsblk
+9. Check xvdbb    202:13568  0  100G  0 disk 
+10. blkid - it will not update here, bcoz we didnt mount ebs till now
+11. df -hT - it will not update here, bcoz we didnt mount ebs till now
+12. Temporary mount 
+13. -> fdisk /dev/xvdbb
+14. m
+15. n  for add new partion
+16. p for primary
+17. 1
+18. 2048
+19. +10G for first partition will create for 10 GB
+20. m
+21. w for save
+22. lsblk - you can see the 10GB partition 
+xvdbb    202:13568  0  100G  0 disk 
+└─xvdbb1 202:13569  0   10G  0 part 
+
+
+23. blkid
+/dev/xvdbb1: PARTUUID="de69268f-01"
+
+
+24. Allocate file system (.ext4)
+25. mkfs.ext4 /dev/xvdbb1
+26. mount /dev/xvdbb1  <destination, ex: /mnt>
+27. df -hT - now showcase here
+        /dev/xvdbb1    ext4    10G   24K   9G   1% /mnt
+
+
+28. Cd /mnt - now we can store our files here

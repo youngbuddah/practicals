@@ -1,0 +1,15 @@
+﻿For UBUNTU
+
+
+1. Create ec2 ->  with http inbound rule
+2. Sudo -i
+3. Spt update && apt install nginx -y
+4. Systemctl start nginx
+5. Systemctl status nginx
+6. Cd /
+7. Copy static website link from internet 
+   1. Ex: https://www.free-css.com/assets/files/free-css-templates/download/page296/neogym.zip
+8. Apt install unzip
+9. Unzip <package name, ex: neogym.zip>
+10. Mv /<package-html ex: neogym-html>/* /var/www/html
+11. Systemctl reload nginx

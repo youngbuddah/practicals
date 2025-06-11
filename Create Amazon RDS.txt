@@ -1,0 +1,65 @@
+Practical 1
+create amazon rds 
+1. standard create 
+2. choose mariadb 
+3. choose free tier
+4. give a password to access the database
+5. allow public access
+6. create database 
+
+it will take some time to create database.
+after the database is available to use 
+click on the database-1 and select the security roup, edit inbound rule and add 3306 and save changes.
+
+launch an ec2 instance and also edit the security group of instance too by adding 3306 port
+
+local:sudo -i
+root: apt update && apt install mariadb-server -y
+mysql -h <copy-the-endpoint-of-the-database-here> -u admin -p
+enter
+Password : <password>
+login in MariaDB
+-show databases;
+-create database student;
+-create table student_info(rollno int PRIMARY KEY AUTO_INCREMENT,student_name varchar(20),student_age int,student_marks int);
+insert into student_info(student_name varchar(20),student_age int,student_marks int) values ('john',10,85),('maya',12,75),('daniel',9,90);
+-select * from student_info;
+
+Practical 2
+install virtual-box and download ubuntu 
+install ubuntu on virtual-box
+local:sudo -i
+root: apt update && apt install mariadb-server -y
+run this command mysql_secure_installation
+change the password for accessing the database as it is not set
+and for the other options let it be Y
+mysql -u root -p
+enter
+<password>
+-create database employee;
+-use employee;
+-CREATE TABLE employee_details (
+    employee_id INT PRIMARY KEY AUTO_INCREMENT,
+    employee_name VARCHAR(100),
+    employee_age INT,
+    employee_profile VARCHAR(255)
+);
+-INSERT INTO employee_details (employee_name, employee_age, employee_profile) VALUES
+('Alice Johnson', 28, 'Software Engineer'),
+('Rahul Sharma', 32, 'DevOps Engineer'),
+('Maya Patel', 26, 'Data Analyst'),
+('John Smith', 35, 'Project Manager'),
+('Sneha Reddy', 30, 'UI/UX Designer');
+- select * from employee_details;
+mysqldump -u root -p employee > employee.sql
+<password>
+ls
+employee.sql
+
+create database same as the local macine(employee) on server amazon rds
+mysql -h <copy-the-endpoint-of-the-database-here> -u admin -p -P 3306 -D employee < employee.sql
+* if not connecting to the server amazon rds then some of the issue might be firewall blocking your 3306 so for that 
+ufw allow 3306 command 
+* check your security group 
+
+

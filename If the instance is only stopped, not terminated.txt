@@ -1,0 +1,24 @@
+Option 1: Create a new key pair and replace the old one
+
+    Create a new key pair from AWS Console and download the new .pem.
+
+    Launch a temporary EC2 instance in the same AZ.
+
+    Detach the root volume of the locked instance.
+
+    Attach it to the new temporary instance as a secondary volume (e.g., /dev/xvdf).
+
+    SSH into the temporary instance.
+
+    Mount the attached volume:
+
+sudo mkdir /mnt/temp
+sudo mount /dev/xvdf1 /mnt/temp
+
+Navigate to /mnt/temp/home/ec2-user/.ssh/ or the appropriate user's .ssh/ folder.
+
+Replace authorized_keys file with your new public key.
+
+Unmount the volume and re-attach it back to the original instance as its root volume.
+
+Start the instance and SSH using the new key.

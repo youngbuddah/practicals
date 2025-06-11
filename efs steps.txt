@@ -1,0 +1,15 @@
+﻿For UBUNTU
+
+
+1. Create 2 security group
+   1. Ssh + http
+   2. nfs ----imp
+2. Create 2 Ec2 in 2 different availability zone
+3. Create efs -> customize -> attach above both ec2 with security group (nfs)
+4. Connect both security group
+5. Apt install update && apt install -y nfs-common in both ec2
+6. Go to EFS and attach
+7. Cd /
+8. Copy 2nd mount command (via DNS) in both ec2
+   1. Ex: mount -t nfs4 -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,noresvport fs-063033903f13337bb.efs.ap-south-1.amazonaws.com:/ <source directory, ex: /efs>
+9. Try to create file in any one ec2 and it should visible in second ec2
